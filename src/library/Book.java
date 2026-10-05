@@ -12,7 +12,11 @@ public class Book {
     }
 
     public void setTitle(String title) {
-        this.title = title;
+        if (title != null && !title.isEmpty()) {
+            this.title = title;
+        } else {
+            this.title = "Без назви";
+        }
     }
 
     public String getAuthor() {
@@ -20,7 +24,11 @@ public class Book {
     }
 
     public void setAuthor(String author) {
-        this.author = author;
+        if (author != null && !author.isEmpty()) {
+            this.author = author;
+        } else {
+            this.author = "Автор невідомий";
+        }
     }
 
     public int getYear() {
@@ -28,7 +36,11 @@ public class Book {
     }
 
     public void setYear(int year) {
-        this.year = year;
+        if (year > 0 && year <= 2026) {
+            this.year = year;
+        } else {
+            this.year = 0;
+        }
     }
 
     public boolean isAvailable() {
@@ -37,5 +49,19 @@ public class Book {
 
     public void setAvailable(boolean available) {
         this.available = available;
+    }
+
+    public int getBookAge(int currentYear) {
+        return currentYear - year;
+    }
+
+    public void borrowBook() {
+        if (available) {
+            available = false;
+        }
+    }
+
+    public void returnBook() {
+        available = true;
     }
 }
