@@ -1,5 +1,7 @@
 package library;
 
+import java.util.Objects;
+
 /**
  * Клас Book представляє книгу у бібліотечній системі.
  *
@@ -124,5 +126,40 @@ public class Book {
      */
     public void returnBook() {
         available = true;
+    }
+
+    /**
+     * Порівнює поточну книгу з іншим об'єктом.
+     *
+     * @param obj об'єкт для порівняння
+     * @return true, якщо книги однакові
+     */
+    @Override
+    public boolean equals(Object obj) {
+
+        if (this == obj) {
+            return true;
+        }
+
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+
+        Book book = (Book) obj;
+
+        return year == book.year
+                && available == book.available
+                && Objects.equals(title, book.title)
+                && Objects.equals(author, book.author);
+    }
+
+    /**
+     * Повертає хеш-код книги.
+     *
+     * @return хеш-код книги
+     */
+    @Override
+    public int hashCode() {
+        return Objects.hash(title, author, year, available);
     }
 }
