@@ -15,7 +15,6 @@ public class Reader {
 
     /**
      * Повертає ім'я читача.
-     *
      * @return ім'я читача
      */
     public String getName() {
@@ -24,12 +23,11 @@ public class Reader {
 
     /**
      * Встановлює ім'я читача.
-     *
      * @param name ім'я читача
      */
     public void setName(String name) {
-        if (name != null && !name.isEmpty()) {
-            this.name = name;
+        if (name != null && !name.isBlank()) {
+            this.name = name.trim();
         } else {
             this.name = "Невідомий читач";
         }
@@ -37,7 +35,6 @@ public class Reader {
 
     /**
      * Повертає номер телефону читача.
-     *
      * @return номер телефону
      */
     public String getPhone() {
@@ -46,37 +43,23 @@ public class Reader {
 
     /**
      * Встановлює номер телефону читача.
-     *
      * @param phone номер телефону
      */
     public void setPhone(String phone) {
-        this.phone = phone;
+
+        if (phone != null && phone.matches("\\+?[0-9]{10,15}")) {
+            this.phone = phone;
+        } else {
+            System.err.println("Некоректний номер телефону!");
+        }
     }
 
     /**
      * Перевіряє правильність номера телефону.
-     *
-     * @return true, якщо номер містить допустимі символи
+     * @return true, якщо номер правильний
      */
     public boolean isPhoneValid() {
-
-        if (phone == null || phone.isEmpty()) {
-            return false;
-        }
-
-        int i = 0;
-
-        while (i < phone.length()) {
-
-            char symbol = phone.charAt(i);
-
-            if (!Character.isDigit(symbol) && symbol != '+') {
-                return false;
-            }
-
-            i++;
-        }
-
-        return true;
+        return phone != null
+                && phone.matches("\\+?[0-9]{10,15}");
     }
 }
