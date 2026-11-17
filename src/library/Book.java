@@ -4,35 +4,24 @@ import java.util.Objects;
 
 /**
  * Клас Book представляє книгу у бібліотечній системі.
+ * Успадковує клас Publication.
  *
  * @author Yevstratov
  * @version 1.0
  */
-public class Book implements Cloneable {
+public class Book extends Publication implements Cloneable {
 
-    private String title;
     private String author;
     private int year;
     private boolean available;
 
     /**
-     * Повертає назву книги.
-     * @return назва книги
+     * Повертає тип видання.
+     * @return тип видання
      */
-    public String getTitle() {
-        return title;
-    }
-
-    /**
-     * Встановлює назву книги.
-     * @param title назва книги
-     */
-    public void setTitle(String title) {
-        if (title != null && !title.isEmpty()) {
-            this.title = title;
-        } else {
-            this.title = "Без назви";
-        }
+    @Override
+    public String getType() {
+        return "Книга";
     }
 
     /**
@@ -77,7 +66,7 @@ public class Book implements Cloneable {
 
     /**
      * Перевіряє доступність книги.
-     * @return true, якщо книга доступна
+     * @return стан доступності
      */
     public boolean isAvailable() {
         return available;
@@ -136,7 +125,7 @@ public class Book implements Cloneable {
 
         return year == book.year
                 && available == book.available
-                && Objects.equals(title, book.title)
+                && Objects.equals(getTitle(), book.getTitle())
                 && Objects.equals(author, book.author);
     }
 
@@ -146,7 +135,7 @@ public class Book implements Cloneable {
      */
     @Override
     public int hashCode() {
-        return Objects.hash(title, author, year, available);
+        return Objects.hash(getTitle(), author, year, available);
     }
 
     /**
