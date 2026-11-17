@@ -16,6 +16,29 @@ public class Library implements Cloneable {
     private int bookCount = 0;
 
     /**
+     * Створює порожню бібліотеку.
+     */
+    public Library() {
+    }
+
+    /**
+     * Конструктор копіювання бібліотеки.
+     * @param original оригінальна бібліотека
+     */
+    public Library(Library original) {
+
+        this.name = original.name;
+        this.address = original.address;
+        this.bookCount = original.bookCount;
+
+        this.books = new Book[original.books.length];
+
+        for (int i = 0; i < bookCount; i++) {
+            this.books[i] = original.books[i].clone();
+        }
+    }
+
+    /**
      * Повертає назву бібліотеки.
      * @return назва бібліотеки
      */
@@ -61,7 +84,6 @@ public class Library implements Cloneable {
      * @return true, якщо книгу додано
      */
     public boolean addBook(Book book) {
-
         if (book != null && bookCount < books.length) {
             books[bookCount] = book;
             bookCount++;
@@ -96,7 +118,6 @@ public class Library implements Cloneable {
     public Book findBook(String title) {
 
         for (int i = 0; i < bookCount; i++) {
-
             if (books[i].getTitle().equals(title)) {
                 return books[i];
             }

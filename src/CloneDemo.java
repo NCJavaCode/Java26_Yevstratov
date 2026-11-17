@@ -14,18 +14,22 @@ public class CloneDemo {
         original.setName("Міська бібліотека");
         original.addBook(book);
 
-        Library copy = original.clone();
+        // Клонування через метод clone()
+        Library copy1 = original.clone();
 
-        System.out.println("Оригінал: " + original.getName());
-        System.out.println("Копія: " + copy.getName());
+        // Клонування через конструктор копіювання
+        Library copy2 = new Library(original);
 
-        copy.setName("Копія бібліотеки");
-        copy.findBook("Кобзар").setTitle("Нова назва");
+        copy1.findBook("Кобзар").setTitle("Книга 1");
+        copy2.findBook("Кобзар").setTitle("Книга 2");
 
-        System.out.println("Книга в оригіналі: "
+        System.out.println("Оригінал: "
                 + original.findBook("Кобзар").getTitle());
 
-        System.out.println("Книга в копії: "
-                + copy.findBook("Нова назва").getTitle());
+        System.out.println("Копія через clone(): "
+                + copy1.findBook("Книга 1").getTitle());
+
+        System.out.println("Копія через конструктор: "
+                + copy2.findBook("Книга 2").getTitle());
     }
 }
