@@ -2,16 +2,25 @@ package library;
 
 /**
  * Клас Reader представляє читача бібліотеки.
- *
- * Клас зберігає ім'я читача та номер телефону.
+ * Реалізує інтерфейс Nameble.
  *
  * @author Yevstratov
  * @version 1.0
  */
-public class Reader {
+public class Reader implements Nameble {
 
+    private String className = "Reader";
     private String name;
     private String phone;
+
+    /**
+     * Повертає назву класу.
+     * @return назва класу
+     */
+    @Override
+    public String getClassName() {
+        return className;
+    }
 
     /**
      * Повертає ім'я читача.

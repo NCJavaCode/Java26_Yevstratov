@@ -5,16 +5,27 @@ import java.time.Year;
 
 /**
  * Клас Book представляє книгу у бібліотечній системі.
- * Успадковує клас Publication.
+ * Успадковує Publication та реалізує Nameble.
  *
  * @author Yevstratov
  * @version 1.0
  */
-public class Book extends Publication implements Cloneable {
+public class Book extends Publication
+        implements Cloneable, Nameble {
 
+    private String className = "Book";
     private String author;
     private int year;
     private boolean available;
+
+    /**
+     * Повертає назву класу.
+     * @return назва класу
+     */
+    @Override
+    public String getClassName() {
+        return className;
+    }
 
     /**
      * Повертає тип видання.
@@ -92,7 +103,6 @@ public class Book extends Publication implements Cloneable {
 
     /**
      * Обчислює вік книги на поточний рік.
-     * Перевантажений метод.
      * @return вік книги
      */
     public int getBookAge() {
