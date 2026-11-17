@@ -1,4 +1,5 @@
-package library;
+import library.Book;
+import library.Library;
 
 public class ExceptionDemo {
 
@@ -13,7 +14,11 @@ public class ExceptionDemo {
         System.out.println("Книга: "
                 + library.getBook(0).getTitle());
 
+        // Перевірка виходу за межі масиву
         library.getBook(105);
+
+        // Перевірка відсутнього об'єкта
+        library.addBook(null);
 
         System.out.println("Програма продовжує роботу.");
     }

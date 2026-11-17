@@ -84,11 +84,29 @@ public class Library implements Cloneable {
      * @return true, якщо книгу додано
      */
     public boolean addBook(Book book) {
-        if (book != null && bookCount < books.length) {
-            books[bookCount] = book;
-            bookCount++;
-            return true;
-        } else {
+
+        try {
+
+            if (book == null) {
+                throw new NullPointerException();
+            }
+
+            if (bookCount < books.length) {
+                books[bookCount] = book;
+                bookCount++;
+                return true;
+            }
+
+            return false;
+
+        } catch (NullPointerException e) {
+
+            System.err.println(
+                    "Помилка: NullPointerException");
+
+            System.err.println(
+                    "Об'єкт класу Book відсутній (null)");
+
             return false;
         }
     }
