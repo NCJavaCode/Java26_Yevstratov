@@ -60,3 +60,12 @@
 UML-діаграма показує основні класи проєкту та зв'язки між ними.
 
 ![UML-діаграма](UML.png)
+
+## Структура проєкту
+
+src/
+└── library/
+├── Library.java
+├── Book.java
+├── Reader.java
+└── Loan.java
