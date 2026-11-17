@@ -2,12 +2,12 @@ package library;
 
 /**
  * Клас Reader представляє читача бібліотеки.
- * Реалізує інтерфейс Nameble.
+ * Реалізує інтерфейси Nameble та Informable.
  *
  * @author Yevstratov
  * @version 1.0
  */
-public class Reader implements Nameble {
+public class Reader implements Nameble, Informable {
 
     private String className = "Reader";
     private String name;
@@ -20,6 +20,16 @@ public class Reader implements Nameble {
     @Override
     public String getClassName() {
         return className;
+    }
+
+    /**
+     * Повертає інформацію про читача.
+     * @return інформація про читача
+     */
+    @Override
+    public String getInfo() {
+        return "Читач: " + name
+                + ", телефон: " + phone;
     }
 
     /**
