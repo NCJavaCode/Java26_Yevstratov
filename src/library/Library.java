@@ -127,6 +127,32 @@ public class Library implements Cloneable {
     }
 
     /**
+     * Повертає книгу за індексом масиву.
+     * @param index індекс книги
+     * @return книга або null
+     */
+    public Book getBook(int index) {
+
+        try {
+            return books[index];
+
+        } catch (ArrayIndexOutOfBoundsException e) {
+
+            System.err.println(
+                    "Помилка: ArrayIndexOutOfBoundsException");
+
+            System.err.println(
+                    "Коректні межі масиву: від 0 до "
+                            + (books.length - 1));
+
+            System.err.println(
+                    "Некоректний індекс: " + index);
+
+            return null;
+        }
+    }
+
+    /**
      * Створює глибоку копію бібліотеки.
      * @return копія бібліотеки
      */
