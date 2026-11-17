@@ -1,6 +1,7 @@
 package library;
 
 import java.util.Objects;
+import java.time.Year;
 
 /**
  * Клас Book представляє книгу у бібліотечній системі.
@@ -81,12 +82,21 @@ public class Book extends Publication implements Cloneable {
     }
 
     /**
-     * Обчислює вік книги.
-     * @param currentYear поточний рік
+     * Обчислює вік книги для заданого року.
+     * @param currentYear заданий рік
      * @return вік книги
      */
     public int getBookAge(int currentYear) {
         return currentYear - year;
+    }
+
+    /**
+     * Обчислює вік книги на поточний рік.
+     * Перевантажений метод.
+     * @return вік книги
+     */
+    public int getBookAge() {
+        return getBookAge(Year.now().getValue());
     }
 
     /**
