@@ -5,13 +5,10 @@ import java.util.Objects;
 /**
  * Клас Book представляє книгу у бібліотечній системі.
  *
- * Клас зберігає інформацію про назву книги,
- * автора, рік видання та доступність книги.
- *
  * @author Yevstratov
  * @version 1.0
  */
-public class Book {
+public class Book implements Cloneable {
 
     private String title;
     private String author;
@@ -20,7 +17,6 @@ public class Book {
 
     /**
      * Повертає назву книги.
-     *
      * @return назва книги
      */
     public String getTitle() {
@@ -29,7 +25,6 @@ public class Book {
 
     /**
      * Встановлює назву книги.
-     *
      * @param title назва книги
      */
     public void setTitle(String title) {
@@ -42,7 +37,6 @@ public class Book {
 
     /**
      * Повертає автора книги.
-     *
      * @return автор книги
      */
     public String getAuthor() {
@@ -51,7 +45,6 @@ public class Book {
 
     /**
      * Встановлює автора книги.
-     *
      * @param author автор книги
      */
     public void setAuthor(String author) {
@@ -63,8 +56,7 @@ public class Book {
     }
 
     /**
-     * Повертає рік видання книги.
-     *
+     * Повертає рік видання.
      * @return рік видання
      */
     public int getYear() {
@@ -72,8 +64,7 @@ public class Book {
     }
 
     /**
-     * Встановлює рік видання книги.
-     *
+     * Встановлює рік видання.
      * @param year рік видання
      */
     public void setYear(int year) {
@@ -85,8 +76,7 @@ public class Book {
     }
 
     /**
-     * Повертає стан доступності книги.
-     *
+     * Перевіряє доступність книги.
      * @return true, якщо книга доступна
      */
     public boolean isAvailable() {
@@ -94,9 +84,8 @@ public class Book {
     }
 
     /**
-     * Встановлює стан доступності книги.
-     *
-     * @param available стан доступності книги
+     * Встановлює доступність книги.
+     * @param available стан доступності
      */
     public void setAvailable(boolean available) {
         this.available = available;
@@ -104,16 +93,15 @@ public class Book {
 
     /**
      * Обчислює вік книги.
-     *
      * @param currentYear поточний рік
-     * @return вік книги у роках
+     * @return вік книги
      */
     public int getBookAge(int currentYear) {
         return currentYear - year;
     }
 
     /**
-     * Позначає книгу як видану читачу.
+     * Видача книги читачу.
      */
     public void borrowBook() {
         if (available) {
@@ -122,15 +110,14 @@ public class Book {
     }
 
     /**
-     * Позначає книгу як повернену до бібліотеки.
+     * Повернення книги.
      */
     public void returnBook() {
         available = true;
     }
 
     /**
-     * Порівнює поточну книгу з іншим об'єктом.
-     *
+     * Порівнює книги між собою.
      * @param obj об'єкт для порівняння
      * @return true, якщо книги однакові
      */
@@ -155,11 +142,23 @@ public class Book {
 
     /**
      * Повертає хеш-код книги.
-     *
-     * @return хеш-код книги
+     * @return хеш-код
      */
     @Override
     public int hashCode() {
         return Objects.hash(title, author, year, available);
+    }
+
+    /**
+     * Створює копію об'єкта книги.
+     * @return копія книги
+     */
+    @Override
+    public Book clone() {
+        try {
+            return (Book) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError(e);
+        }
     }
 }

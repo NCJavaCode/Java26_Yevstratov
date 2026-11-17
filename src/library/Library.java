@@ -2,14 +2,12 @@ package library;
 
 /**
  * Клас Library представляє бібліотеку.
- *
- * Клас зберігає назву бібліотеки, адресу,
- * список книг та кількість доданих книг.
+ * Зберігає назву, адресу та список книг.
  *
  * @author Yevstratov
  * @version 1.0
  */
-public class Library {
+public class Library implements Cloneable {
 
     private String name;
     private String address;
@@ -19,7 +17,6 @@ public class Library {
 
     /**
      * Повертає назву бібліотеки.
-     *
      * @return назва бібліотеки
      */
     public String getName() {
@@ -28,7 +25,6 @@ public class Library {
 
     /**
      * Встановлює назву бібліотеки.
-     *
      * @param name назва бібліотеки
      */
     public void setName(String name) {
@@ -41,7 +37,6 @@ public class Library {
 
     /**
      * Повертає адресу бібліотеки.
-     *
      * @return адреса бібліотеки
      */
     public String getAddress() {
@@ -50,7 +45,6 @@ public class Library {
 
     /**
      * Встановлює адресу бібліотеки.
-     *
      * @param address адреса бібліотеки
      */
     public void setAddress(String address) {
@@ -63,9 +57,8 @@ public class Library {
 
     /**
      * Додає книгу до бібліотеки.
-     *
-     * @param book книга, яку потрібно додати
-     * @return true, якщо книгу успішно додано
+     * @param book книга
+     * @return true, якщо книгу додано
      */
     public boolean addBook(Book book) {
 
@@ -80,7 +73,6 @@ public class Library {
 
     /**
      * Підраховує кількість доступних книг.
-     *
      * @return кількість доступних книг
      */
     public int countAvailableBooks() {
@@ -88,7 +80,6 @@ public class Library {
         int count = 0;
 
         for (int i = 0; i < bookCount; i++) {
-
             if (books[i].isAvailable()) {
                 count++;
             }
@@ -99,7 +90,6 @@ public class Library {
 
     /**
      * Шукає книгу за назвою.
-     *
      * @param title назва книги
      * @return знайдена книга або null
      */
@@ -113,5 +103,28 @@ public class Library {
         }
 
         return null;
+    }
+
+    /**
+     * Створює глибоку копію бібліотеки.
+     * @return копія бібліотеки
+     */
+    @Override
+    public Library clone() {
+
+        try {
+            Library copy = (Library) super.clone();
+
+            copy.books = new Book[books.length];
+
+            for (int i = 0; i < bookCount; i++) {
+                copy.books[i] = books[i].clone();
+            }
+
+            return copy;
+
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError(e);
+        }
     }
 }
