@@ -139,6 +139,9 @@ public class Book extends Publication
 
     /**
      * Порівнює книги між собою.
+     * Перевіряє рік видання, доступність,
+     * назву та автора книги.
+     *
      * @param obj об'єкт для порівняння
      * @return true, якщо книги однакові
      */
@@ -155,9 +158,15 @@ public class Book extends Publication
 
         Book book = (Book) obj;
 
-        return year == book.year
-                && available == book.available
-                && Objects.equals(getTitle(), book.getTitle())
+        if (year != book.year) {
+            return false;
+        }
+
+        if (available != book.available) {
+            return false;
+        }
+
+        return Objects.equals(getTitle(), book.getTitle())
                 && Objects.equals(author, book.author);
     }
 
