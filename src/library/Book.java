@@ -171,12 +171,21 @@ public class Book extends Publication
     }
 
     /**
-     * Повертає хеш-код книги.
-     * @return хеш-код
+     * Обчислює хеш-код книги за її назвою,
+     * автором, роком видання та доступністю.
+     *
+     * @return хеш-код книги
      */
     @Override
     public int hashCode() {
-        return Objects.hash(getTitle(), author, year, available);
+        int result = 1;
+
+        result = 31 * result + Objects.hashCode(getTitle());
+        result = 31 * result + Objects.hashCode(author);
+        result = 31 * result + Integer.hashCode(year);
+        result = 31 * result + Boolean.hashCode(available);
+
+        return result;
     }
 
     /**
